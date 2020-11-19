@@ -27,13 +27,13 @@ include_directories(
                     ${AliRoot_SOURCE_DIR}/STARLIGHT/starlight/TStarLight
                     ${AliRoot_SOURCE_DIR}/STEER/STEER
                     ${AliRoot_SOURCE_DIR}/STEER/STEERBase
-		    ${AliRoot_SOURCE_DIR}/TEvtGen
+            		  ${AliRoot_SOURCE_DIR}/TEvtGen
                     ${AliRoot_SOURCE_DIR}/TEvtGen/EvtGen
                    )
 
 # Sources in alphabetical order
 set(SRCS
-    ${AliRoot_SOURCE_DIR}/STARLIGHT/starlight/TStarLight/TStarLight.cxx
+    ../starlight/TStarLight/TStarLight.cxx
     AliGenStarLight.cxx
     AliDecayerSLEvtGen.cxx
     AliGenSLEvtGen.cxx
