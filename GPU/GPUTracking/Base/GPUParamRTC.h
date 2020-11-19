@@ -14,22 +14,36 @@
 //* provided "as is" without express or implied warranty.                  *\
 //**************************************************************************
 
-/// \file GPUQAConfig.h
+/// \file GPUParamRTC.h
 /// \author David Rohr
 
-#ifndef GPUQACONFIG_H
-#define GPUQACONFIG_H
+#ifndef GPUPARAMRTC_H
+#define GPUPARAMRTC_H
 
-#include "GPUCommonDef.h"
-
-#include "utils/qconfig.h"
+#include "GPUParam.h"
+#include <string>
 
 namespace GPUCA_NAMESPACE
 {
 namespace gpu
 {
-typedef GPUSettingsQA GPUQAConfig;
-}
+namespace gpu_rtc
+{
+#define QCONFIG_GENRTC
+#define BeginNamespace(...)
+#define EndNamespace(...)
+#include "utils/qconfig.h"
+#undef QCONFIG_GENRTC
+#undef BeginNamespace
+#undef EndNamespace
+} // namespace gpu_rtc
+
+struct GPUParamRTC : public internal::GPUParam_t<gpu_rtc::GPUSettingsRec, gpu_rtc::GPUSettingsParam> {
+  void setFrom(const GPUParam& param);
+  static std::string generateRTCCode(const GPUParam& param, bool useConstexpr);
+};
+
+} // namespace gpu
 } // namespace GPUCA_NAMESPACE
 
 #endif

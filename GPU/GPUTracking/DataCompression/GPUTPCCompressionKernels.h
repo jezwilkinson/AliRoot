@@ -48,7 +48,6 @@ class GPUTPCCompressionKernels : public GPUKernelTemplate
   template <int iKernel = defaultKernel>
   GPUd() static void Thread(int nBlocks, int nThreads, int iBlock, int iThread, GPUsharedref() GPUSharedMemory& GPUrestrict() smem, processorType& GPUrestrict() processors);
 
- public:
   template <int I>
   class GPUTPCCompressionKernels_Compare
   {
@@ -70,6 +69,7 @@ class GPUTPCCompressionGatherKernels : public GPUKernelTemplate
     buffered32,
     buffered64,
     buffered128,
+    multiBlock
   };
 
   using Vec16 = unsigned short;
@@ -125,6 +125,8 @@ class GPUTPCCompressionGatherKernels : public GPUKernelTemplate
 
   template <typename V>
   GPUdii() static void gatherBuffered(int nBlocks, int nThreads, int iBlock, int iThread, GPUsharedref() GPUSharedMemory& GPUrestrict() smem, processorType& GPUrestrict() processors);
+
+  GPUdii() static void gatherMulti(int nBlocks, int nThreads, int iBlock, int iThread, GPUsharedref() GPUSharedMemory& GPUrestrict() smem, processorType& GPUrestrict() processors);
 };
 
 } // namespace GPUCA_NAMESPACE::gpu

@@ -115,12 +115,12 @@ include_directories(${CMAKE_SOURCE_DIR}
                     ${CMAKE_SOURCE_DIR}/Refit
                     ${CMAKE_SOURCE_DIR}/qa
                     ${CMAKE_SOURCE_DIR}/SliceTracker
+                    ${CMAKE_SOURCE_DIR}/DataCompression
                     ${CMAKE_SOURCE_DIR}/TRDTracking)
 
 if(CONFIG_O2_EXTENSIONS)
 include_directories(${CMAKE_SOURCE_DIR}/TPCClusterFinder
                     ${CMAKE_SOURCE_DIR}/ITS
-                    ${CMAKE_SOURCE_DIR}/DataCompression
                     ${CMAKE_SOURCE_DIR}/../../../Common/Field/include
                     ${CMAKE_SOURCE_DIR}/../../../Common/Constants/include
                     ${CMAKE_SOURCE_DIR}/../../../Common/MathUtils/include
@@ -168,7 +168,7 @@ if(CONFIG_O2_EXTENSIONS)
                ../../../DataFormats/Reconstruction/src/TrackParametrizationWithError.cxx
                ../../../DataFormats/Reconstruction/src/Vertex.cxx
                ../../../DataFormats/Reconstruction/src/TrackLTIntegral.cxx
-               ../../../Detectors/TRD/base/src/TRDGeometryBase.cxx
+               ../../../Detectors/TRD/base/src/GeometryBase.cxx
                ../../../Detectors/Base/src/MatLayerCylSet.cxx
                ../../../Detectors/Base/src/MatLayerCyl.cxx
                ../../../Detectors/Base/src/Ray.cxx

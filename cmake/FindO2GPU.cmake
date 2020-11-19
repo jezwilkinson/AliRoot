@@ -1,3 +1,13 @@
+# Copyright CERN and copyright holders of ALICE O2. This software is distributed
+# under the terms of the GNU General Public License v3 (GPL Version 3), copied
+# verbatim in the file "COPYING".
+#
+# See http://alice-o2.web.cern.ch/license for full licensing information.
+#
+# In applying this license CERN does not waive the privileges and immunities
+# granted to it by virtue of its status as an Intergovernmental Organization or
+# submit itself to any jurisdiction.
+
 if(NOT DEFINED ENABLE_CUDA)
   set(ENABLE_CUDA "AUTO")
 endif()
@@ -17,7 +27,6 @@ string(TOUPPER "${ENABLE_HIP}" ENABLE_HIP)
 
 # Detect and enable CUDA
 if(ENABLE_CUDA)
-  cmake_minimum_required(VERSION 3.18 FATAL_ERROR)
   set(CUDA_MINIMUM_VERSION "11.0")
   set(CMAKE_CUDA_STANDARD 17)
   set(CMAKE_CUDA_STANDARD_REQUIRED TRUE)
@@ -31,6 +40,7 @@ if(ENABLE_CUDA)
     endif()
   endif()
   if(CMAKE_CUDA_COMPILER)
+    cmake_minimum_required(VERSION 3.18 FATAL_ERROR)
     enable_language(CUDA)
     get_property(LANGUAGES GLOBAL PROPERTY ENABLED_LANGUAGES)
     if(NOT CUDA IN_LIST LANGUAGES)
@@ -52,10 +62,9 @@ if(ENABLE_CUDA)
       set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -Werror=cross-execution-space-call")
     endif()
     if(CUDA_COMPUTETARGET)
-      set(
-        CMAKE_CUDA_FLAGS
-        "${CMAKE_CUDA_FLAGS} -gencode arch=compute_${CUDA_COMPUTETARGET},code=sm_${CUDA_COMPUTETARGET}"
-        )
+      set(CMAKE_CUDA_ARCHITECTURES ${CUDA_COMPUTETARGET})
+    else()
+      set(CMAKE_CUDA_ARCHITECTURES 61-virtual)
     endif()
 
     set(CUDA_ENABLED ON)

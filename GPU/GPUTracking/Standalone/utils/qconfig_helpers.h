@@ -14,22 +14,39 @@
 //* provided "as is" without express or implied warranty.                  *\
 //**************************************************************************
 
-/// \file GPUDisplayConfig.h
+/// \file qconfig_helpers.h
 /// \author David Rohr
 
-#ifndef GPUDISPLAYCONFIG_H
-#define GPUDISPLAYCONFIG_H
+#ifndef QCONFIG_HELPERS_H
+#define QCONFIG_HELPERS_H
 
-#include "GPUCommonDef.h"
+#include <string>
+#include <sstream>
 
-#include "utils/qconfig.h"
-
-namespace GPUCA_NAMESPACE
+namespace qConfig
 {
-namespace gpu
+template <class T>
+std::string print_type(T val)
 {
-typedef GPUSettingsDisplay GPUDisplayConfig;
-}
-} // namespace GPUCA_NAMESPACE
+  std::ostringstream s;
+  s << val;
+  return s.str();
+};
+template <>
+std::string print_type<char>(char val)
+{
+  return std::to_string(val);
+};
+template <>
+std::string print_type<unsigned char>(unsigned char val)
+{
+  return std::to_string(val);
+};
+template <>
+std::string print_type<bool>(bool val)
+{
+  return val ? "true" : "false";
+};
+} // namespace qConfig
 
 #endif

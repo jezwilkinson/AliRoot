@@ -58,7 +58,7 @@ class MatLayerCylSet;
 } // namespace base
 namespace trd
 {
-class TRDGeometryFlat;
+class GeometryFlat;
 } // namespace trd
 namespace dataformats
 {
@@ -75,7 +75,7 @@ namespace gpu
 {
 class TPCFastTransform;
 class TPCdEdxCalibrationSplines;
-class TPCCFCalibration;
+struct TPCCFCalibration;
 } // namespace gpu
 } // namespace GPUCA_NAMESPACE
 
@@ -179,7 +179,7 @@ template <template <typename T> class S>
 struct GPUCalibObjectsTemplate {
   typename S<TPCFastTransform>::type* fastTransform = nullptr;
   typename S<o2::base::MatLayerCylSet>::type* matLUT = nullptr;
-  typename S<o2::trd::TRDGeometryFlat>::type* trdGeometry = nullptr;
+  typename S<o2::trd::GeometryFlat>::type* trdGeometry = nullptr;
   typename S<TPCdEdxCalibrationSplines>::type* dEdxSplines = nullptr;
   typename S<TPCCFCalibration>::type* tpcCalibration = nullptr;
 };

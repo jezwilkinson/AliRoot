@@ -259,7 +259,7 @@ GPUh() void GPUTPCTracker::WriteOutput()
       unsigned char flags;
       unsigned short amp;
       int id;
-      if (Param().earlyTpcTransform) {
+      if (Param().par.earlyTpcTransform) {
         origX = mData.ClusterData()[clusterIndex].x;
         origY = mData.ClusterData()[clusterIndex].y;
         origZ = mData.ClusterData()[clusterIndex].z;
@@ -296,7 +296,7 @@ GPUh() void GPUTPCTracker::WriteOutput()
   mOutput->SetNTracks(nStoredTracks);
   mOutput->SetNLocalTracks(nStoredLocalTracks);
   mOutput->SetNTrackClusters(nStoredHits);
-  if (Param().debugLevel >= 3) {
+  if (Param().par.debugLevel >= 3) {
     GPUInfo("Slice %d, Output: Tracks %d, local tracks %d, hits %d", mISlice, nStoredTracks, nStoredLocalTracks, nStoredHits);
   }
 }
