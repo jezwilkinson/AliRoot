@@ -3435,9 +3435,9 @@ Float_t AliPIDResponse::GetTPCsignalTunedOnData(const AliVTrack *t) const
     if(kGood){
       //TODO maybe introduce different dEdxSources?
       Double_t bethe = fTPCResponse.GetExpectedSignal(t, type, AliTPCPIDResponse::kdEdxDefault, UseTPCEtaCorrection(),
-                                                      UseTPCMultiplicityCorrection());
+                                                      UseTPCMultiplicityCorrection(), fUseTPCPileupCorrection);
       Double_t sigma = fTPCResponse.GetExpectedSigma(t, type, AliTPCPIDResponse::kdEdxDefault, UseTPCEtaCorrection(),
-                                                     UseTPCMultiplicityCorrection());
+                                                      UseTPCMultiplicityCorrection(), fUseTPCPileupCorrection);
       dedx = gRandom->Gaus(bethe,sigma);
       //              if(iS == AliPID::ParticleCode(AliPID::kHe3) || iS == AliPID::ParticleCode(AliPID::kAlpha)) dedx *= 5;
     }
